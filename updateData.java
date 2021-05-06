@@ -181,11 +181,9 @@ public class updateData extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
               Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myfirstdb", "root", "");
-//            Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.24/migz", "estopazka", "estopazka");
-//            Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.22/architecture", "lloydie", "lloydie");
             Statement stmt = con.createStatement();
             
-            String query = "UPDATE `scholars_data` SET firstname='" + this.UpdateFN.getText() + "', lastname='" + this.UpdateLN.getText() + "', age='" + this.UpdateA.getText() + "', email='" + this.UpdateE.getText() + "', password='" + this.UpdateP.getText() + "' WHERE ID='" + this.UpdateId.getText() + "'";
+            String query = "UPDATE `scholars_data` SET firstname='" + this.UpdateFN.getText() + "', lastname='" + this.UpdateLN.getText() + "', age='" + this.UpdateA.getText() + "', email='" + this.UpdateE.getText() + "', password='" + this.UpdateP.getText() + "' WHERE id='" + this.UpdateId.getText() + "'";
             stmt.execute(query);
             con.close();
             JOptionPane.showMessageDialog(null, "Successfully Updated.", "Alert", JOptionPane.INFORMATION_MESSAGE);
