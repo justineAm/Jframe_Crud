@@ -181,11 +181,11 @@ public class deleteData extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myfirstdb", "root", "");
-//            Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.22/architecture", "lloydie", "lloydie");
+
             Statement stmt = con.createStatement();
 
-            String query = "DELETE FROM `scholars_data` WHERE ID = " + this.DeleteID.getText() + "";
-//            String query = "DELETE FROM `mogamitay` WHERE ID = " + this.DeleteID.getText() + "";
+            String query = "DELETE FROM `scholars_data` WHERE id = " + this.DeleteID.getText() + "";
+
             stmt.execute(query);
             con.close();
             JOptionPane.showMessageDialog(null, "Successfully Delete.", "Alert", JOptionPane.WARNING_MESSAGE);
