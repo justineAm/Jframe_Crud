@@ -6,10 +6,11 @@
 package CrudJframe;
 
 import java.sql.*;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -135,7 +136,7 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Firstname", "Lastname", "Age", "Email", "Password"
+                "id", "Firstname", "Lastname", "Age", "Email", "Password"
             }
         ) {
             Class[] types = new Class [] {
@@ -230,8 +231,7 @@ public class Main extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myfirstdb", "root", "");
-            // Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.24/migz", "estopazka", "estopazka");
-            //Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.22/architecture", "lloydie", "lloydie");
+           
             Statement stmt = con.createStatement();
             String query = "INSERT INTO `scholars_data` (`firstname`, `lastname`, `age`, `email`, `password`) VALUES ('" + Firstname + "', '" + Lastname + "', " + Age + ", '" + Email + "', '" + Password + "');";
             stmt.executeUpdate(query);
@@ -252,7 +252,7 @@ public class Main extends javax.swing.JFrame {
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
 
-    }//GEN-LAST:event_employeeTableMouseClicked
+    }
 
     private void UpdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateBtnMouseClicked
         new updateData().setVisible(true);
@@ -274,25 +274,16 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_DeleteBtnActionPerformed
 
-    private void viewBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewBtnMouseClicked
+    private void viewBtnMouseClicked(java.awt.event.MouseEvent evt) {
         new Main().setVisible(true);
         this.setVisible(false);
         JOptionPane.showMessageDialog(this, "Refresh");
     }//GEN-LAST:event_viewBtnMouseClicked
 
-    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) 
+       
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -324,16 +315,15 @@ public class Main extends javax.swing.JFrame {
         int count = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee", "root", "");
-            //    Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.24/migz", "estopazka", "estopazka");
-            //    Connection con = DriverManager.getConnection("jdbc:mysql://192.168.0.22/architecture", "lloydie", "lloydie");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myfirstdb", "root", "");
+     
             Statement stmt = con.createStatement();
 
             ResultSet datas = stmt.executeQuery("select * from `scholars_data`");
             DefaultTableModel model = (DefaultTableModel) employeeTable.getModel();
             while (datas.next()) {
                 count = 1;
-                model.addRow(new Object[]{datas.getInt("ID"), datas.getString("firstname"), datas.getString("lastname"), datas.getString("age"), datas.getString("email"), datas.getString("password")});
+                model.addRow(new Object[]{datas.getInt("id"), datas.getString("firstname"), datas.getString("lastname"), datas.getString("age"), datas.getString("email"), datas.getString("password")});
             }
             if (count == 0) {
                 JOptionPane.showMessageDialog(null, "No data found this time!.", "Alert", JOptionPane.WARNING_MESSAGE);
